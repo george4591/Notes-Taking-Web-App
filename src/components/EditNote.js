@@ -1,19 +1,41 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/user";
+import { updateNote, deleteNote } from "../services/courses";
 import "../styles/EditNote.css";
 
 export const EditNote = () => {
-  const { setEditMode, noteToEdit, setNoteToEdit } = useContext(UserContext);
+  const { setEditMode, noteToEdit, editNote, removeNote } =
+    useContext(UserContext);
+  const [note, setNote] = useState(noteToEdit);
+  const [hasModified, setHasModified] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNoteToEdit({ ...noteToEdit, [name]: value });
+    setNote({ ...note, [name]: value });
+    setHasModified(true);
   };
 
-
-  const handleEditMode = (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
+    if (hasModified) {
+      try {
+        const updatedNote = await updateNote(note);
+        editNote(updatedNote.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     setEditMode(false);
+  };
+
+  const handleDelete = async (e) => {
+    try {
+      await deleteNote(note.id);
+      removeNote(note);
+      setEditMode(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -24,19 +46,22 @@ export const EditNote = () => {
         name="title"
         placeholder="Note Title"
         onChange={handleChange}
-        value={noteToEdit.title}
+        value={note.title}
       />
       <textarea
         type="text"
         className="course-input"
+        id="note-content"
         name="content"
         placeholder="Note Content"
-        rows={20}
         onChange={handleChange}
-        value={noteToEdit.content}
+        value={note.content}
       />
-      <button onClick={handleEditMode}>Save</button>
-      <button onClick={handleEditMode}>Cancel</button>
+      <div id="note-buttons">
+        <button onClick={handleEdit}>Save</button>
+        <button onClick={() => setEditMode(false)}>Cancel</button>
+        <button onClick={handleDelete}>Delete Note</button>
+      </div>
     </div>
   );
 };

@@ -48,6 +48,14 @@ const CoursePanel = ({ course }) => {
           </form>
         </div>
       )}
+      <div id="modified-label">
+        <div>
+          Title
+        </div>
+        <div>
+          Last Edit
+        </div>
+      </div>
       {course.notes && course.notes.length > 0 && (
         <NoteList notes={course.notes} />
       )}

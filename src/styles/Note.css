@@ -1,0 +1,10 @@
+#date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1.1;
+  font-size: 15px;
+  margin-left: auto;
+}

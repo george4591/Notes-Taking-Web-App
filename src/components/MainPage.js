@@ -21,13 +21,13 @@ const MainPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
-  let name = user.email.split("@");
+  const [name] = user.email.split("@");
   return (
     <div id="main-page">
       <div id="left-panel">
         <div>
           <p id="user-label">Logged in as:</p>
-          <p id="username">{name[0]}</p>
+          <p id="username">{name}</p>
         </div>
         <img src={require("./img/logo.png")} alt=""></img>
 

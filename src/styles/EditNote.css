@@ -1,4 +1,15 @@
 #edit-wrapper {
     width: 80%;
+    height: 80vh;
     padding: 10px;
+}
+
+#note-content {
+    margin-top: 10px;
+    height: 90%;
+}
+
+#note-buttons {
+    display: flex;
+    gap: 5px;
 }

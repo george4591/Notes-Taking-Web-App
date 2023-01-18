@@ -54,6 +54,47 @@ app.post("/api/courses/:id/notes", async (req, res) => {
   }
 });
 
+app.put("/api/notes/:id", async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  if (id && title && content) {
+    try {
+      const note = await Note.findOne({ where: { id } });
+      if (note) {
+        await note.update({ title, content });
+        res.status(201).json(note.dataValues);
+      } else {
+        res.status(404).json({ error: "Note not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error });
+    }
+  } else {
+    res.status(400).json({ error: "Missing fields" });
+  }
+});
+
+app.delete("/api/notes/:id", async (req, res) => {
+  const { id } = req.params;
+  if (id) {
+    try {
+      const note = await Note.findOne({ where: { id } });
+      if (note) {
+        await note.destroy();
+        res.status(201).json({ message: "Note deleted" });
+      } else {
+        res.status(404).json({ error: "Note not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error });
+    }
+  } else {
+    res.status(400).json({ error: "Missing fields" });
+  }
+});
+
 app.post("/api/students/:email/courses", async (req, res) => {
   const { email } = req.params;
   const { id, name, description } = req.body;

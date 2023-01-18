@@ -17,3 +17,19 @@ export const createNote = async (id, title) => {
     console.log(error);
   }
 }
+
+export const updateNote = async (note) => {
+  try {
+    return await axios.put(`${baseUrl}/notes/${note.id}`, note);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const deleteNote = async (id) => {
+  try {
+    await axios.delete(`${baseUrl}/notes/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+}

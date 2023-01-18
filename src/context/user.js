@@ -22,6 +22,28 @@ const UserProvider = ({ children }) => {
     setCourses([...newCourses]);
   };
 
+  const editNote = (note) => {
+    const newCourses = courses.map((course) => {
+      if (course.id === Number(note.courseId)) {
+        const newNotes = course.notes.map((n) => (n.id === note.id ? note : n));
+        return { ...course, notes: newNotes };
+      }
+      return course;
+    });
+    setCourses([...newCourses]);
+  };
+
+  const removeNote = (note) => {
+    
+    const newCourses = courses.map(course => {
+      if (course.id === Number(note.courseId)) {
+        const newNotes = course.notes.filter(n => n.id !== note.id);
+        return { ...course, notes: newNotes };
+      }
+    })
+    setCourses([...newCourses]);
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -36,7 +58,9 @@ const UserProvider = ({ children }) => {
         editMode,
         setEditMode,
         noteToEdit,
-        setNoteToEdit
+        setNoteToEdit,
+        editNote,
+        removeNote,
       }}
     >
       {children}
