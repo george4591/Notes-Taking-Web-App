@@ -1,13 +1,16 @@
 #login-wrapper {
+    text-align: center;
+    font-size: 25px;
     width: fit-content;
-    border: 3px solid black;
+    border: 2px solid rgb(221, 221, 221);
     border-radius: 5%;
-    padding: 10px;
+    padding: 30px;
     height: 25vh;
-
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4);
+    scale: 120%;
 }
 
 #login-form {
@@ -15,12 +18,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
     font-size: 16px;
 }
 
+#login-form > input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: 2px solid rgb(146, 146, 146);
+}
+
+#login-form > input:focus {
+    outline: 3px solid rgb(88, 88, 88);
+}
+
 #login-form > button {
     width: 100%;
-    padding: 0 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(17, 17, 82);
+    color:white;
+    font-weight: medium;
+    transition: all 0.3s ease;
+}
+
+#login-form > button:hover {
+    background-color: rgb(22, 22, 109);
 }

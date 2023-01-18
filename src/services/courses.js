@@ -33,3 +33,11 @@ export const deleteNote = async (id) => {
     console.log(error);
   }
 }
+
+export const getCourse = async (id) => {
+  try {
+    return await axios.get(`${baseUrl}/courses/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+}

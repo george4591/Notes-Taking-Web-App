@@ -54,6 +54,25 @@ app.post("/api/courses/:id/notes", async (req, res) => {
   }
 });
 
+app.get("/api/courses/:id", async(req, res) => {
+  const { id } = req.params;
+  if (id) {
+    try {
+      const course = await Course.findOne({ where: { id } });
+      if (course) {
+        res.status(201).json(course.dataValues);
+      } else {
+        res.status(404).json({ error: "Course not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error });
+    }
+  } else {
+    res.status(400).json({ error: "Missing fields" });
+  }
+})
+
 app.put("/api/notes/:id", async (req, res) => {
   const { id } = req.params;
   const { title, content } = req.body;

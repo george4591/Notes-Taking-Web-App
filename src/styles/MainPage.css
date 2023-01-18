@@ -12,18 +12,57 @@
     justify-content: space-evenly;
     align-items: center;
     width: 20%;
-    border-right: 1px solid black;
+    border-right: 2px solid gray;
 }
 
 #left-panel > button {
     width: 50%;
 }
 
+#join-menu {
+    z-index: 5;
+    position: fixed;
+    display: flex;
+    gap: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    outline: 1px solid rgb(104, 104, 104);
+}
+
+#join-menu > button {
+    margin-left: 2px;
+    background-color: rgb(17, 17, 82);
+    color: white
+}
+
+#join-menu > input {
+    padding-left: 10px;
+}
+
 #button-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 10%;
+    height: 17%;
+}
+
+#create-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(17, 17, 82);
+    color:white;
+    font-weight: medium;
+    transition: all 0.3s ease;
+}
+
+#create-btn:hover {
+    background-color: rgb(22, 22, 109);
 }
 
 #user-label {

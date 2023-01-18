@@ -40,13 +40,6 @@ const LoginForm = () => {
     <div id='login-wrapper'>
       Login
       <form id="login-form" onSubmit={handleSubmit}>
-        {/* <input
-          type="text"
-          name="username"
-          value={fields.username}
-          onChange={handleChange}
-          required
-        /> */}
         <input
           type="email"
           name="email"
