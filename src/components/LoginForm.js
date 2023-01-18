@@ -20,8 +20,13 @@ const LoginForm = () => {
 
     if (fields.email) {
       const { email } = fields;
-      const student = await auth(email);
 
+      try {
+        const student = await auth(email);
+      } catch (error) {
+        
+      }
+      
       setUser({ email });
       setIsLoggedIn(true);
     }

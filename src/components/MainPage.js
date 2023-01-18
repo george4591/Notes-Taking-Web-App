@@ -13,7 +13,6 @@ const MainPage = () => {
 
   return (
     <div>
-      <h1>Hello {user.email}</h1>
       <StudentBoard/>
       <button onClick={handleLogOut}>Log Out</button>
     </div>
