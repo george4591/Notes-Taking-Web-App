@@ -7,11 +7,10 @@ import MainPage from "./components/MainPage";
 function App() {
   const { isLoggedIn } = useContext(UserContext);
 
-
   return (
     <div className="App">
       <header className="App-header">
-        {!isLoggedIn ? <LoginForm /> : <MainPage />}
+        {isLoggedIn ? <MainPage /> : <LoginForm />}
       </header>
     </div>
   );

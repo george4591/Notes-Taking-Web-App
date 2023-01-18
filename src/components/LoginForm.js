@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../context/user";
+import { auth } from "../services/students";
 
 const formFields = {
-  username: "",
+  // username: "",
   email: "",
 };
 
@@ -14,12 +15,14 @@ const LoginForm = () => {
     setFields({ ...fields, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (fields.username && fields.email) {
-      const {username, email} = fields
-      setUser({ username, email });
+    if (fields.email) {
+      const { email } = fields;
+      const student = await auth(email);
+
+      setUser({ email });
       setIsLoggedIn(true);
     }
   };
@@ -28,13 +31,13 @@ const LoginForm = () => {
     <div>
       Login
       <form onSubmit={handleSubmit}>
-        <input
+        {/* <input
           type="text"
           name="username"
           value={fields.username}
           onChange={handleChange}
           required
-        />
+        /> */}
         <input
           type="email"
           name="email"
