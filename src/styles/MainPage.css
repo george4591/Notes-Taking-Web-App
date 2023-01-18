@@ -25,3 +25,8 @@
     justify-content: space-around;
     height: 10%;
 }
+
+#user-label {
+    font-size: 12px;
+    color: grey;
+}

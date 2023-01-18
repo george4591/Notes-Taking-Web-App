@@ -1,33 +1,41 @@
 #id-generator {
-    outline: 1px solid black;
-    padding: 0 10px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    width: 90%;
-    border-radius: 5px;
-    justify-content: space-between
-  }
-  
-  
-  #create-form {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .course-input {
-    width: 90%;
-    padding: 10px;
-    border-radius: 5px;
-    resize: none;
-  }
-  
-  #create-button {
-    width: 100%;
-  }
-  
-  
+  outline: 1px solid black;
+  padding: 0 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  border-radius: 5px;
+  justify-content: space-between;
+}
+
+#create-form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.course-input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+
+#create-button {
+  width: 100%;
+}
+
+#x-icon:hover {
+  cursor: pointer;
+}
+
+#id-label {
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 0;
+  color: grey;
+}

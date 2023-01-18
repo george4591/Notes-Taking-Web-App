@@ -2,7 +2,7 @@ import Note from "./Note";
 
 const NoteList = ({ notes }) => {
   return (
-    <ul>
+    <ul id='list'>
       {notes.map(note => (
         <Note key={note.id} note={note} />
       ))}

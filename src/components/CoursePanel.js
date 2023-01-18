@@ -4,10 +4,10 @@ import "../styles/CoursePanel.css";
 import { createNote } from "../services/courses.js";
 import NoteList from "./NoteList";
 
-const CoursePanel = ({course}) => {
+const CoursePanel = ({ course }) => {
   const [title, setTitle] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const {addNote} = useContext(UserContext);
+  const { addNote } = useContext(UserContext);
 
   const handleCreate = async () => {
     if (title) {
@@ -25,13 +25,15 @@ const CoursePanel = ({course}) => {
 
   return (
     <div id="course-panel">
-      <h3>Course Panel</h3>
-      <button id="new-note-button" onClick={() => setShowForm(true)}>
-        NEW NOTE
-      </button>
+      <div id="course-header">
+        <h3>Course Panel</h3>
+        <button id="new-note-button" onClick={() => setShowForm(true)}>
+          New Note
+        </button>
+      </div>
       {showForm && (
         <div id="note-form-wrapper">
-          <form id="note-form" onSubmit={e => e.preventDefault()}>
+          <form id="note-form" onSubmit={(e) => e.preventDefault()}>
             <input
               id="title-input"
               type="text"
@@ -46,11 +48,9 @@ const CoursePanel = ({course}) => {
           </form>
         </div>
       )}
-      {
-        course.notes && course.notes.length > 0 && (
-          <NoteList notes={course.notes} />
-        )
-      }
+      {course.notes && course.notes.length > 0 && (
+        <NoteList notes={course.notes} />
+      )}
     </div>
   );
 };

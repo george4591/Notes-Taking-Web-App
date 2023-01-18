@@ -1,6 +1,10 @@
 #right-panel {
     width: 80%;
     height: 100vh;
-    background-color: aliceblue;
+    background-color: whitesmoke;
     padding: 0 1em;
+}
+
+#right-panel > h1 {
+    margin-top: 2em;
 }

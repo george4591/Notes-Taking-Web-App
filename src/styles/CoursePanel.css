@@ -1,7 +1,7 @@
 #note-form-wrapper {
-  margin-top : 10px;
+  margin-top: 10px;
   padding: 10px;
-  outline : 1px solid rgb(26, 26, 26);
+  outline: 1px solid rgb(26, 26, 26);
   border-radius: 5px;
 }
 
@@ -9,10 +9,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-    min-width: 30vw;
-    min-height: 75vh;
-} 
+  min-width: 30vw;
+  min-height: 75vh;
+}
 
+#course-header {
+  width: 90%;
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+}
 #note-form {
   display: flex;
   flex-direction: column;

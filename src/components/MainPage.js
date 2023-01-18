@@ -2,7 +2,7 @@ import { UserContext } from "../context/user";
 import { useContext, useState } from "react";
 import StudentBoard from "./StudentBoard";
 import Modal from "./Modal";
-import Menu from "./Menu"
+import Menu from "./Menu";
 import CreateForm from "./CreateForm";
 
 import "../styles/MainPage.css";
@@ -18,13 +18,16 @@ const MainPage = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { courses } = useContext(UserContext);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
-
+  let name = user.email.split("@");
   return (
     <div id="main-page">
       <div id="left-panel">
-        <p>{user.email}</p>
+        <div>
+          <p id="user-label">Logged in as:</p>
+          <p id="username">{name[0]}</p>
+        </div>
+
         <div id="button-wrapper">
           <button onClick={toggleModal}>Create Course</button>
           <button onClick={handleLogOut}>Log Out</button>
@@ -33,7 +36,7 @@ const MainPage = () => {
       {isModalOpen && (
         <Modal>
           <Menu onClose={toggleModal}>
-            <CreateForm onCreate={toggleModal} />
+            <CreateForm onCreate={toggleModal} isOpened={isModalOpen} />
           </Menu>
         </Modal>
       )}
