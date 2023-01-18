@@ -1,0 +1,27 @@
+#main-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100vw;
+}
+
+#left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+    border-right: 1px solid black;
+}
+
+#left-panel > button {
+    width: 50%;
+}
+
+#button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 10%;
+}

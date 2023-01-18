@@ -5,20 +5,16 @@ import Menu from "./Menu"
 import CourseList from "./CourseList";
 import CreateForm from "./CreateForm";
 
+import '../styles/StudentBoard.css'
+
 const StudentBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { courses } = useContext(UserContext);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
   return (
-    <div>
+    <div id='right-panel'>
       <button onClick={toggleModal}>Create Course</button>
-      {isModalOpen && (
-        <Modal>
-          <Menu onClose={toggleModal}>
-            <CreateForm onCreate={toggleModal} />
-          </Menu>
-        </Modal>
-      )}
+      
       <CourseList courses={courses} />
     </div>
   );

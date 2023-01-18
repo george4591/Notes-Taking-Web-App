@@ -7,13 +7,7 @@ import MainPage from "./components/MainPage";
 function App() {
   const { isLoggedIn } = useContext(UserContext);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        {isLoggedIn ? <MainPage /> : <LoginForm />}
-      </header>
-    </div>
-  );
+  return <div className="App">{isLoggedIn ? <MainPage /> : <LoginForm />}</div>;
 }
 
 export default App;
