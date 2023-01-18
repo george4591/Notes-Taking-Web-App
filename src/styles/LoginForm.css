@@ -10,7 +10,18 @@
     flex-direction: column;
     justify-content: space-around;
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4);
+    background-color: white;
     scale: 120%;
+}
+
+#bg {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
 }
 
 #login-form {

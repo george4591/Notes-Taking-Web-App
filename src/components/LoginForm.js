@@ -37,13 +37,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div id='login-wrapper'>
+    <div id="bg">
+      <div id='login-wrapper'>
       Login
       <form id="login-form" onSubmit={handleSubmit}>
         <input
           type="email"
           name="email"
           placeholder="Email"
+          pattern="^\S+@stud\.ase\.ro$"
           value={fields.email}
           onChange={handleChange}
           required
@@ -51,6 +53,9 @@ const LoginForm = () => {
         <button>Log In</button>
       </form>
     </div>
+
+      </div>
+    
   );
 };
 
