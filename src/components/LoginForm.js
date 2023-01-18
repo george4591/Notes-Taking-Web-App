@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { UserContext } from "../context/user";
 
 const formFields = {
   username: "",
@@ -7,15 +8,21 @@ const formFields = {
 
 const LoginForm = () => {
   const [fields, setFields] = useState(formFields);
-
+  const { user, setUser, setIsLoggedIn } = useContext(UserContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFields({ ...fields, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(fields);
-  }
+
+    if (fields.username && fields.email) {
+      setUser({ fields });
+      setIsLoggedIn(true);
+      console.log(user);
+    }
+  };
 
   return (
     <div>
