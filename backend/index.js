@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const { sequelize, Student } = require("./util/sequelize");
+const { sequelize, Student, Course } = require("./util/sequelize");
 
 const app = express();
 const port = 3001;
@@ -14,12 +14,13 @@ app.post("/api/auth", async (req, res) => {
   const { email } = req.body;
   if (email) {
     try {
-      const existingStudent = await Student.findOne({ where: { email } });
+      const existingStudent = await Student.findOne({ where: { email }, include: "courses" });
+      console.log(existingStudent);
       if (existingStudent) {
         return res.status(201).json(existingStudent.dataValues);
       } else {
         const student = await Student.create({ email });
-        res.status(201).json(student.dataValues);
+        res.status(201).json({...student.dataValues, courses: []});
       }
     } catch (error) {
       console.error(error);
@@ -30,7 +31,24 @@ app.post("/api/auth", async (req, res) => {
   }
 });
 
-app.get("api/get/:email", async (req, res) => {
+app.post("/api/students/:email/courses", async (req, res) => {
+  const { email } = req.params;
+  const {id, name, description} = req.body;
+  if (id && name && description) {
+    try {
+      const createdCourse = await Course.create({id, name, description, studentEmail: email});
+      res.status(201).json(createdCourse.dataValues);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error });
+    }
+  }
+  else {
+    res.status(400).json({ error: "Missing fields" });
+  }
+});
+
+app.get("api/students/:email", async (req, res) => {
   let { email } = req.params;
   console.log(email);
 

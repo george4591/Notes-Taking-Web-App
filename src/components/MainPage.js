@@ -3,12 +3,13 @@ import { useContext } from "react";
 import StudentBoard from "./StudentBoard";
 
 const MainPage = () => {
-  const { user, setUser, setIsLoggedIn, isLoggedIn } = useContext(UserContext);
+  const { setUser, setIsLoggedIn, setCourses } = useContext(UserContext);
 
   const handleLogOut = (e) => {
     e.preventDefault();
     setIsLoggedIn(false);
     setUser({});
+    setCourses([]);
   };
 
   return (

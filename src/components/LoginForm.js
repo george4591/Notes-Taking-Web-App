@@ -11,7 +11,8 @@ const formFields = {
 
 const LoginForm = () => {
   const [fields, setFields] = useState(formFields);
-  const { setUser, setIsLoggedIn } = useContext(UserContext);
+  const { setUser, setIsLoggedIn, setCourses } = useContext(UserContext);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFields({ ...fields, [name]: value });
@@ -25,6 +26,7 @@ const LoginForm = () => {
 
       try {
         const student = await auth(email);
+        setCourses([...student.data.courses]);
       } catch (error) {
         
       }

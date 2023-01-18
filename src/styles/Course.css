@@ -1,0 +1,14 @@
+#course-wrapper {
+  position:relative;
+  background-color: slategray;
+  color: white;
+  text-align: start;
+  padding: 10px;
+  margin: 0 5px;
+}
+#course-id {
+  position:absolute;
+  bottom:0;
+  right: 10px;
+  font-size: 12px;
+}
