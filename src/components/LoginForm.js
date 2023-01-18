@@ -8,7 +8,7 @@ const formFields = {
 
 const LoginForm = () => {
   const [fields, setFields] = useState(formFields);
-  const { user, setUser, setIsLoggedIn } = useContext(UserContext);
+  const { setUser, setIsLoggedIn } = useContext(UserContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFields({ ...fields, [name]: value });
@@ -18,9 +18,9 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (fields.username && fields.email) {
-      setUser({ fields });
+      const {username, email} = fields
+      setUser({ username, email });
       setIsLoggedIn(true);
-      console.log(user);
     }
   };
 
