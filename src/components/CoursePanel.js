@@ -1,13 +1,58 @@
-import Course from "./Course";
-import '../styles/CoursePanel.css';
+import { useState, useContext } from "react";
+import { UserContext } from "../context/user";
+import "../styles/CoursePanel.css";
+import { createNote } from "../services/courses.js";
+import NoteList from "./NoteList";
 
-const CoursePanel = ({ courses }) => {
+const CoursePanel = ({course}) => {
+  const [title, setTitle] = useState("");
+  const [showForm, setShowForm] = useState(false);
+  const {addNote} = useContext(UserContext);
+
+  const handleCreate = async () => {
+    if (title) {
+      try {
+        const note = await createNote(course.id, title);
+        addNote(course, note.data);
+        setTitle("");
+      } catch (error) {
+        console.log("NU A PUTUT FI CREATA NOTITA", error);
+      }
+
+      setShowForm(false);
+    }
+  };
+
   return (
-    <div id="courses">
-      {courses.map((course) => (
-        <Course course={course} key={course.id}/>
-      ))}
+    <div id="course-panel">
+      <h3>Course Panel</h3>
+      <button id="new-note-button" onClick={() => setShowForm(true)}>
+        NEW NOTE
+      </button>
+      {showForm && (
+        <div id="note-form-wrapper">
+          <form id="note-form" onSubmit={e => e.preventDefault()}>
+            <input
+              id="title-input"
+              type="text"
+              placeholder="Note Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <div id="button-group">
+              <button onClick={handleCreate}>Create</button>
+              <button onClick={() => setShowForm(false)}>Close</button>
+            </div>
+          </form>
+        </div>
+      )}
+      {
+        course.notes && course.notes.length > 0 && (
+          <NoteList notes={course.notes} />
+        )
+      }
     </div>
   );
 };
+
 export default CoursePanel;

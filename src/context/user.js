@@ -9,10 +9,30 @@ const UserProvider = ({ children }) => {
 
   const addCourse = (course) => {
     setCourses([...courses, course]);
-  }
+  };
+
+  const addNote = (course, note) => {
+    const newNotes = course.notes ? [...course.notes, note] : [note];
+    const newCourse = { ...course, notes: newNotes };
+    const newCourses = courses.filter((c) => c.id !== newCourse.id);
+    newCourses.push(newCourse);
+    
+    setCourses([...newCourses]);
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn, courses, addCourse, setCourses }}>
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        isLoggedIn,
+        setIsLoggedIn,
+        courses,
+        addCourse,
+        setCourses,
+        addNote,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

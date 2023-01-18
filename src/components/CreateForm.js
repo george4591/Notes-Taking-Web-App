@@ -1,8 +1,9 @@
-import '../styles/CreateMenu.css';
-import { Icon } from '@iconify/react';
 import { useState, useContext } from 'react';
 import { createCourse } from '../services/courses';
 import { UserContext } from "../context/user";
+import { Icon } from '@iconify/react';
+
+import '../styles/CreateForm.css';
 
 const generateID = () => Math.floor(100000 + Math.random() * 900000);
 
@@ -12,7 +13,7 @@ const defaultFields = {
   id: generateID()
 }
 
-const CreateMenu = ({closeModal}) => {
+const CreateForm = ({onCreate}) => {
   const {user, addCourse} = useContext(UserContext);
   const [fields, setFields] = useState(defaultFields);
 
@@ -30,17 +31,14 @@ const CreateMenu = ({closeModal}) => {
     if (fields.name && fields.description ) {
       try {
         const course = await createCourse(user.email, fields);
-        addCourse(course);
-        closeModal();
+        addCourse(course.data);
+        onCreate();
       } catch (error) {
         console.log("EROARE NU S A CREAT CURS");        
       }
     }
   }
-
-  return (
-    <div id="menu-wrapper">
-      <Icon icon="bi:x" id='close-button' onClick={closeModal}/>
+  return (<div>
       <h3>Create Menu</h3>
       <form onSubmit={handleSubmit} id='create-form'>
         <input type="text" className='course-input' name="name" placeholder="Course Name" onChange={handleChange} value={fields.name}/>
@@ -51,8 +49,8 @@ const CreateMenu = ({closeModal}) => {
         </div>
         <button id="create-button">Create Course</button>
       </form>
-    </div>
-  );
+
+  </div>)
 }
 
-export default CreateMenu;
+export default CreateForm;

@@ -9,3 +9,11 @@ export const createCourse = async (email, course) => {
     console.log(error);
   }
 }
+
+export const createNote = async (id, title) => {
+  try {
+    return await axios.post(`${baseUrl}/courses/${id}/notes`, {title});
+  } catch (error) {
+    console.log(error);
+  }
+}

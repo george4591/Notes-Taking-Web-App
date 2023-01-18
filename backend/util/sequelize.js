@@ -36,6 +36,23 @@ const Course = sequelize.define("course", {
   description: Sequelize.STRING,
 });
 
+const Note = sequelize.define("note", {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+  },
+  courseId: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Course, 
+      key: 'id'
+    }
+  },
+  title: Sequelize.STRING,
+  content: Sequelize.TEXT,
+})
+
 Student.hasMany(Course, {
   foreignKey: "studentEmail",
 });
@@ -44,8 +61,19 @@ Course.belongsTo(Student, {
   foreignKey: "studentEmail",
 });
 
+Course.hasMany(Note, {
+  foreignKey: 'courseId'
+})
+
+Note.belongsTo(Course, {
+  foreignKey: 'courseId'
+})
+
+
+
 module.exports = {
   sequelize,
   Student,
-  Course
+  Course,
+  Note
 };

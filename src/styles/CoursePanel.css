@@ -1,3 +1,33 @@
-#courses {
-    display: flex;
+#note-form-wrapper {
+  margin-top : 10px;
+  padding: 10px;
+  outline : 1px solid rgb(26, 26, 26);
+  border-radius: 5px;
+}
+
+#course-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    min-width: 30vw;
+    min-height: 75vh;
+} 
+
+#note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+#button-group {
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#button-group > button {
+  width: 100%;
 }
