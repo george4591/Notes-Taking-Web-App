@@ -4,11 +4,11 @@ import CreateMenu from "./CreateMenu";
 
 const StudentBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
   return (
     <div>
-        <button onClick={() => setIsModalOpen(true)}>Create Course</button>
-        {isModalOpen && <Modal> <CreateMenu closeModal={() => setIsModalOpen(false)}/> </Modal>}
+        <button onClick={toggleModal}>Create Course</button>
+        {isModalOpen && <Modal> <CreateMenu closeModal={toggleModal}/> </Modal>}
     </div>
   )
 }

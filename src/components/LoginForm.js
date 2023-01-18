@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "../context/user";
 import { auth } from "../services/students";
 
+import '../styles/LoginForm.css'
+
 const formFields = {
   // username: "",
   email: "",
@@ -33,9 +35,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div id='login-wrapper'>
       Login
-      <form onSubmit={handleSubmit}>
+      <form id="login-form" onSubmit={handleSubmit}>
         {/* <input
           type="text"
           name="username"
@@ -46,6 +48,7 @@ const LoginForm = () => {
         <input
           type="email"
           name="email"
+          placeholder="Email"
           value={fields.email}
           onChange={handleChange}
           required

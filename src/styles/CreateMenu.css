@@ -3,6 +3,7 @@
   position: relative;
   color: black;
   background-color: white;
+  padding: 10px;
 }
 
 #close-button {
@@ -15,6 +16,17 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+#id-generator {
+  outline: 1px solid black;
+  padding: 0 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  justify-content: space-between
+}
+
 
 #create-form {
   padding: 10px;
