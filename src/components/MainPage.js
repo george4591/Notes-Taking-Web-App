@@ -4,11 +4,13 @@ import StudentBoard from "./StudentBoard";
 import Modal from "./Modal";
 import Menu from "./Menu";
 import CreateForm from "./CreateForm";
+import { EditNote } from "./EditNote";
 
 import "../styles/MainPage.css";
 
 const MainPage = () => {
-  const { user, setUser, setIsLoggedIn, setCourses } = useContext(UserContext);
+  const { user, setUser, setIsLoggedIn, setCourses, editMode } =
+    useContext(UserContext);
 
   const handleLogOut = (e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const MainPage = () => {
           <p id="user-label">Logged in as:</p>
           <p id="username">{name[0]}</p>
         </div>
+        <img src={require("./img/logo.png")} alt=""></img>
 
         <div id="button-wrapper">
           <button onClick={toggleModal}>Create Course</button>
@@ -36,11 +39,14 @@ const MainPage = () => {
       {isModalOpen && (
         <Modal>
           <Menu onClose={toggleModal}>
-            <CreateForm onCreate={toggleModal} isOpened={isModalOpen} />
+            <CreateForm
+              onCreate={toggleModal}
+              isOpened={isModalOpen}
+            />
           </Menu>
         </Modal>
       )}
-      <StudentBoard />
+      {!editMode ? <StudentBoard /> : <EditNote />}
     </div>
   );
 };

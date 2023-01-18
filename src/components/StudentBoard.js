@@ -1,10 +1,9 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context/user";
 import CourseList from "./CourseList";
 import '../styles/StudentBoard.css'
 
 const StudentBoard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { courses } = useContext(UserContext);
 
   return (

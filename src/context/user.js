@@ -6,6 +6,8 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [courses, setCourses] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [noteToEdit, setNoteToEdit] = useState({});
 
   const addCourse = (course) => {
     setCourses([...courses, course]);
@@ -16,7 +18,7 @@ const UserProvider = ({ children }) => {
     const newCourse = { ...course, notes: newNotes };
     const newCourses = courses.filter((c) => c.id !== newCourse.id);
     newCourses.push(newCourse);
-    
+
     setCourses([...newCourses]);
   };
 
@@ -31,6 +33,10 @@ const UserProvider = ({ children }) => {
         addCourse,
         setCourses,
         addNote,
+        editMode,
+        setEditMode,
+        noteToEdit,
+        setNoteToEdit
       }}
     >
       {children}
